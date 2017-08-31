@@ -57,6 +57,9 @@
      <Compile Include="Assets\_scripts\playerGravityBody.cs" />
      <Compile Include="Assets\GalaxyBox2\Scripts\examplescene.cs" />
      <Compile Include="Assets\GalaxyBox2\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\Scripts\firstPersonController.cs" />
+     <Compile Include="Assets\Scripts\GravityAttractor.cs" />
+     <Compile Include="Assets\Scripts\GravityBody.cs" />
      <Compile Include="Assets\SimpleKeplerOrbits\Scripts\Components\KeplerOrbitLineDisplay.cs" />
      <Compile Include="Assets\SimpleKeplerOrbits\Scripts\Components\KeplerOrbitMover.cs" />
      <Compile Include="Assets\SimpleKeplerOrbits\Scripts\Data\AttractorData.cs" />
