@@ -7,12 +7,12 @@ public class firstPersonController : MonoBehaviour {
 	// public vars
 	public float mouseSensitivityX = 1;
 	public float mouseSensitivityY = 1;
-	public float walkSpeed = 6;
-	public float jumpForce = 220;
-	public LayerMask groundedMask;
+	public float walkSpeed = 10;
+	public float jumpForce = 500;
+	public LayerMask GroundedMask;
+	public bool isGrounded;
 
 	// System vars
-	bool grounded;
 	Vector3 moveAmount;
 	Vector3 smoothMoveVelocity;
 	float verticalLookRotation;
@@ -29,23 +29,21 @@ public class firstPersonController : MonoBehaviour {
 
 	void Update() {
 
-		// Look rotation:
+		// Camera rotation:
 		transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivityX);
 		verticalLookRotation += Input.GetAxis("Mouse Y") * mouseSensitivityY;
 		verticalLookRotation = Mathf.Clamp(verticalLookRotation,-60,60);
 		cameraTransform.localEulerAngles = Vector3.left * verticalLookRotation;
 
-		// Calculate movement:
-		float inputX = Input.GetAxisRaw("Horizontal");
-		float inputY = Input.GetAxisRaw("Vertical");
+		// Capsule movement:
 
-		Vector3 moveDir = new Vector3(inputX,0, inputY).normalized;
+		Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"),0, Input.GetAxisRaw("Vertical")).normalized;
 		Vector3 targetMoveAmount = moveDir * walkSpeed;
 		moveAmount = Vector3.SmoothDamp(moveAmount,targetMoveAmount,ref smoothMoveVelocity,.15f);
 
 		// Jump
-		if (Input.GetButtonDown("Jump")) {
-			if (grounded) {
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			if (isGrounded) {
 				rigidbody.AddForce(transform.up * jumpForce);
 			}
 		}
@@ -54,18 +52,33 @@ public class firstPersonController : MonoBehaviour {
 		Ray ray = new Ray(transform.position, -transform.up);
 		RaycastHit hit;
 
-		if (Physics.Raycast(ray, out hit, 1 + .1f, groundedMask)) {
-			grounded = true;
+		if (Physics.Raycast(ray, out hit, 1 + .1f, GroundedMask)) {
+			isGrounded = true;
 		}
 		else {
-			grounded = false;
+			isGrounded = false;
 		}
-
 	}
 
 	void FixedUpdate() {
-		// Apply movement to rigidbody
+
 		Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
 		rigidbody.MovePosition(rigidbody.position + localMove);
+		Debug.Log ("Player is isGrounded: " + isGrounded);
+	}
+
+	void OnTriggerEnter(Collider col)
+	{
+		StayOnSphere (col);
+	}
+
+	void OnTriggerStay(Collider col)
+	{
+		StayOnSphere (col);
+	}
+
+	void StayOnSphere(Collider col)
+	{
+		isGrounded = true;
 	}
 }
