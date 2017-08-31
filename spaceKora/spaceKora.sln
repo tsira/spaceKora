@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spaceKora", "Assembly-CSharp.csproj", "{15A10AB9-8816-D204-1B69-DF1F999ECC2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spaceKora", "Assembly-CSharp-firstpass.csproj", "{8DBB9202-6AA3-2185-586B-FEFE0128DC0B}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spaceKora", "Assembly-CSharp-Editor.csproj", "{A5B5237A-C6B1-48EB-1135-6E441352AEE8}"
 EndProject
 Global
@@ -15,6 +17,10 @@ Global
 		{15A10AB9-8816-D204-1B69-DF1F999ECC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15A10AB9-8816-D204-1B69-DF1F999ECC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15A10AB9-8816-D204-1B69-DF1F999ECC2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DBB9202-6AA3-2185-586B-FEFE0128DC0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DBB9202-6AA3-2185-586B-FEFE0128DC0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DBB9202-6AA3-2185-586B-FEFE0128DC0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBB9202-6AA3-2185-586B-FEFE0128DC0B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5B5237A-C6B1-48EB-1135-6E441352AEE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5B5237A-C6B1-48EB-1135-6E441352AEE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5B5237A-C6B1-48EB-1135-6E441352AEE8}.Release|Any CPU.ActiveCfg = Release|Any CPU

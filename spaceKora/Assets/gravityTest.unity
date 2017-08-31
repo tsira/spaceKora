@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 955118153}
   - component: {fileID: 955118158}
   - component: {fileID: 955118157}
+  - component: {fileID: 955118156}
   m_Layer: 8
   m_Name: startPlanet
   m_TagString: planet
@@ -406,7 +407,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 955118152}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 1328624605}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -419,6 +420,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 955118152}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &955118156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 955118152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52774eb4e08ee1f44a312b607e84fb4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DriveableProperty:
+    m_Fields:
+    - m_Target: {fileID: 955118157}
+      m_FieldPath: gravity
+      m_RSKeyName: startPlanetGravity
+      m_Type: float
 --- !u!114 &955118157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +482,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!134 &1006228300
+PhysicMaterial:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Default (Instance)
+  dynamicFriction: 0.6
+  staticFriction: 0.6
+  bounciness: 0
+  frictionCombine: 0
+  bounceCombine: 0
+--- !u!134 &1328624605
+PhysicMaterial:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Default (Instance)
+  dynamicFriction: 0.6
+  staticFriction: 0.6
+  bounciness: 0
+  frictionCombine: 0
+  bounceCombine: 0
 --- !u!1 &1470711152
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +607,7 @@ GameObject:
   - component: {fileID: 1974858621}
   - component: {fileID: 1974858622}
   - component: {fileID: 1974858620}
+  - component: {fileID: 1974858623}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -612,7 +653,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1974858615}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 1006228300}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -687,3 +728,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f770b7045bec48028e4b79145e99639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1974858623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1974858615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52774eb4e08ee1f44a312b607e84fb4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DriveableProperty:
+    m_Fields:
+    - m_Target: {fileID: 1974858620}
+      m_FieldPath: walkSpeed
+      m_RSKeyName: playerWalkSpeed
+      m_Type: float
+    - m_Target: {fileID: 1974858620}
+      m_FieldPath: jumpForce
+      m_RSKeyName: playerJumpForce
+      m_Type: float
+    - m_Target: {fileID: 1974858620}
+      m_FieldPath: isGrounded
+      m_RSKeyName: canJump
+      m_Type: bool
