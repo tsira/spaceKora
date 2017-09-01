@@ -13,17 +13,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsKeyList:
   - key: playerWalkSpeed
-    value: 8.1
+    value: 8
     type: float
   - key: playerJumpForce
     value: 500.5
     type: float
   - key: canJump
-    value: True
+    value: False
     type: bool
+  - key: playerColor
+    value: testMaskObject
+    type: string
   - key: startPlanetGravity
     value: -9.81
     type: float
-  - key: playerColor
-    value: testMaskObject [ ] { } () [{()}] {([])} ({[]})
-    type: string
