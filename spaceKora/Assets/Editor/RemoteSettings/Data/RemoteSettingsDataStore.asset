@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Name: RemoteSettingsDataStore
   m_EditorClassIdentifier: 
   rsKeyList:
-  - key: playerWalkSpeed
-    value: 8
-    type: float
-  - key: playerJumpForce
-    value: 500.5
-    type: float
   - key: canJump
-    value: False
+    value: True
     type: bool
-  - key: playerColor
-    value: testMaskObject
-    type: string
   - key: startPlanetGravity
     value: -9.81
+    type: float
+  - key: playerColor
+    value: testMaskObject [ ] { } () [{()}] {([])} ({[]})
+    type: string
+  - key: playerJumpForce
+    value: 50.5
+    type: float
+  - key: playerWalkSpeed
+    value: 15.2
     type: float

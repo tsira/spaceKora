@@ -36,7 +36,6 @@ public class firstPersonController : MonoBehaviour {
 		cameraTransform.localEulerAngles = Vector3.left * verticalLookRotation;
 
 		// Capsule movement:
-
 		Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"),0, Input.GetAxisRaw("Vertical")).normalized;
 		Vector3 targetMoveAmount = moveDir * walkSpeed;
 		moveAmount = Vector3.SmoothDamp(moveAmount,targetMoveAmount,ref smoothMoveVelocity,.15f);
@@ -44,7 +43,7 @@ public class firstPersonController : MonoBehaviour {
 		// Jump
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			if (isGrounded) {
-				rigidbody.AddForce(transform.up * jumpForce);
+				rigidbody.AddForce(transform.up * jumpForce * 9.8f);
 			}
 		}
 
