@@ -21,9 +21,9 @@ MonoBehaviour:
   - key: playerColor
     value: testMaskObject [ ] { } () [{()}] {([])} ({[]})
     type: string
-  - key: playerJumpForce
-    value: 50.5
-    type: float
   - key: playerWalkSpeed
     value: 15.2
+    type: float
+  - key: playerJumpForce
+    value: 1000.1
     type: float

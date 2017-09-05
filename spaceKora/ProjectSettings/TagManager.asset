@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - planet
+  - gem
   layers:
   - Default
   - TransparentFX

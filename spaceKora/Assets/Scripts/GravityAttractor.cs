@@ -55,6 +55,14 @@ public class GravityAttractor : MonoBehaviour {
 		}
 	}
 
+	public void Attract(Rigidbody body, float gravForce) {
+		foreach (GravityBody player in players) {
+			Vector3 gravityUp = (body.position - transform.position).normalized;
+			Vector3 localUp = body.transform.up;
+			body.AddForce (gravityUp * -gravForce);
+		}
+	}
+
 	public void Capture(Rigidbody body) {
 		Vector3 gravityUp = (body.position - transform.position).normalized;
 		Vector3 localUp = body.transform.up;

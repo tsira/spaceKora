@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class GravityBody : MonoBehaviour {
 
 	private static List<GravityAttractor> planets = new List<GravityAttractor>();
-	GameObject closestPlanet;
+	public float gravForce;
 
 	void Awake () {
 		foreach (GameObject planet in GameObject.FindGameObjectsWithTag("planet")) {
@@ -27,9 +27,12 @@ public class GravityBody : MonoBehaviour {
 
 	void FixedUpdate () {
 		foreach (GravityAttractor planet in planets) {
-			Debug.Log("Distance between player and: "+planet.name+ " is: "+Vector3.Distance(planet.transform.position, GetComponent<Rigidbody>().position));
+			//Debug.Log("Distance between player and: "+planet.name+ " is: "+Vector3.Distance(planet.transform.position, GetComponent<Rigidbody>().position));
+			//Debug.Log("Mass of Planet: "+plane t.name+ " is: "+planet.GetComponent<Rigidbody> ().mass);
+			Debug.Log ("Gravitational Force of: " + planet.name + " on the player is: " + (0.06 * planet.GetComponent<Rigidbody> ().mass) / Mathf.Pow(0.00001f + (Vector3.Distance (planet.transform.position, GetComponent<Rigidbody> ().position)),2));
 			//Debug.Log ("Planet name is: " + planet.name);
-			planet.Attract (GetComponent<Rigidbody> ());
+			gravForce = (float)(0.06 * planet.GetComponent<Rigidbody> ().mass) / Mathf.Pow(0.00001f + (Vector3.Distance (planet.transform.position, GetComponent<Rigidbody> ().position)),2);
+			planet.Attract (GetComponent<Rigidbody> (), gravForce);
 		}
 		planets.Sort (delegate(GravityAttractor x, GravityAttractor y) {
 			return (int)Vector3.Distance (x.transform.position, GetComponent<Rigidbody> ().position).CompareTo(Vector3.Distance (y.transform.position, GetComponent<Rigidbody> ().position));

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\_scripts\attractor.cs" />
+     <Compile Include="Assets\_scripts\gem.cs" />
      <Compile Include="Assets\_scripts\playerController.cs" />
      <Compile Include="Assets\_scripts\playerGravityAttractor.cs" />
      <Compile Include="Assets\_scripts\playerGravityBody.cs" />

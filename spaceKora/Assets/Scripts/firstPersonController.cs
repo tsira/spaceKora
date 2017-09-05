@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Analytics;
 
 [RequireComponent (typeof (GravityBody))]
 public class firstPersonController : MonoBehaviour {
@@ -11,6 +13,7 @@ public class firstPersonController : MonoBehaviour {
 	public float jumpForce = 500;
 	public LayerMask GroundedMask;
 	public bool isGrounded;
+	public int scoreCount;
 
 	// System vars
 	Vector3 moveAmount;
@@ -25,6 +28,15 @@ public class firstPersonController : MonoBehaviour {
 		Cursor.visible = false;
 		cameraTransform = Camera.main.transform;
 		rigidbody = GetComponent<Rigidbody> ();
+
+	}
+
+	void Start() {
+		Analytics.CustomEvent("gameStart", new Dictionary<string, object>
+			{
+				{ "playerWalkSpeed", walkSpeed },
+				{ "playerJumpForce", jumpForce }
+			});
 	}
 
 	void Update() {
@@ -66,11 +78,6 @@ public class firstPersonController : MonoBehaviour {
 		Debug.Log ("Player is isGrounded: " + isGrounded);
 	}
 
-	void OnTriggerEnter(Collider col)
-	{
-		StayOnSphere (col);
-	}
-
 	void OnTriggerStay(Collider col)
 	{
 		StayOnSphere (col);
@@ -80,4 +87,26 @@ public class firstPersonController : MonoBehaviour {
 	{
 		isGrounded = true;
 	}
+
+	void OnTriggerEnter(Collider col) 
+	{
+		StayOnSphere (col);
+		if (col.gameObject.CompareTag ("gem"))
+		{
+			col.gameObject.SetActive (false);
+			scoreCount++;
+			//SetCountText ();
+		}
+	}
+
+//	void SetCountText ()
+//	{
+//		countText.text = "Score: " + scoreCount.ToString ();
+//		if (scoreCount >= 2)
+//		{
+//			winText.text = "A Winner is You!";
+//		}
+//	}
+
+
 }
