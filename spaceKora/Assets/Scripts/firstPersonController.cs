@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Analytics;
+using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent (typeof (GravityBody))]
 public class firstPersonController : MonoBehaviour {
@@ -14,6 +16,7 @@ public class firstPersonController : MonoBehaviour {
 	public LayerMask GroundedMask;
 	public bool isGrounded;
 	public int scoreCount;
+	public TextMeshProUGUI scoreText;
 
 	// System vars
 	Vector3 moveAmount;
@@ -28,7 +31,7 @@ public class firstPersonController : MonoBehaviour {
 		Cursor.visible = false;
 		cameraTransform = Camera.main.transform;
 		rigidbody = GetComponent<Rigidbody> ();
-
+		//scoreText = GetComponent<TextMeshProUGUI>() ?? gameObject.AddComponent<TextMeshProUGUI>();sss
 	}
 
 	void Start() {
@@ -37,6 +40,9 @@ public class firstPersonController : MonoBehaviour {
 				{ "playerWalkSpeed", walkSpeed },
 				{ "playerJumpForce", jumpForce }
 			});
+		scoreCount = 20;
+		scoreText.SetText("Gems Left: " +scoreCount.ToString());
+
 	}
 
 	void Update() {
@@ -53,9 +59,16 @@ public class firstPersonController : MonoBehaviour {
 		moveAmount = Vector3.SmoothDamp(moveAmount,targetMoveAmount,ref smoothMoveVelocity,.15f);
 
 		// Jump
+		if (Input.GetKey(KeyCode.Space) && (Input.GetKey(KeyCode.LeftShift)||Input.GetKey(KeyCode.RightShift))) {
+			if (isGrounded) {
+				rigidbody.AddForce(transform.up * jumpForce* 9.8f);
+			}
+		}
+
+		// SuperJump
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			if (isGrounded) {
-				rigidbody.AddForce(transform.up * jumpForce * 9.8f);
+				rigidbody.AddForce(transform.up * 100* 9.8f);
 			}
 		}
 
@@ -94,19 +107,20 @@ public class firstPersonController : MonoBehaviour {
 		if (col.gameObject.CompareTag ("gem"))
 		{
 			col.gameObject.SetActive (false);
-			scoreCount++;
-			//SetCountText ();
+			scoreCount--;
+			SetCountText ();
 		}
 	}
 
-//	void SetCountText ()
-//	{
-//		countText.text = "Score: " + scoreCount.ToString ();
-//		if (scoreCount >= 2)
-//		{
-//			winText.text = "A Winner is You!";
-//		}
-//	}
+	void SetCountText ()
+	{
+		scoreText.SetText("Gems Left: " + scoreCount.ToString ());
+
+		if (scoreCount <= 0)
+		{
+			scoreText.SetText("A Winner is You!");
+		}
+	}
 
 
 }
